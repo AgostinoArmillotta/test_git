@@ -39,7 +39,7 @@ class AffordablePubsPage extends StatefulWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pub eccocccococo'),
+        title: const Text('Pub economici'),
       ),
       body: Column(
         children: [
