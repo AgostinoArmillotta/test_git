@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:trying_flutter/pub.dart';
+import 'package:trying_flutter/pubpicture.dart';
+import 'package:trying_flutter/pubscard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,22 +19,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.yellowAccent),
       ),
-      home: const AffordablePubsPage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
-class AffordablePubsPage extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
   
-  const AffordablePubsPage({super.key,required this.title});
+  const MyHomePage({super.key,required this.title});
   final String title;
-
   @override
-  State<AffordablePubsPage> createState() =>
-      _AffordablePubsPageState();
+  State<MyHomePage> createState() =>
+      _MyHomePageState();
   }
 
-  class _AffordablePubsPageState extends State<AffordablePubsPage> {
-    List<dynamic> pubs = [];
+  class _MyHomePageState extends State<MyHomePage> {
+    List<Pubs> pubs = [];
+    List<PubPicture> pubpicture = [];
   
   Future<void> fetchAffordablePubs() async {
   final url = Uri.parse(
@@ -42,10 +45,8 @@ class AffordablePubsPage extends StatefulWidget {
 
   if (response.statusCode == 200) {
     final data = jsonDecode(response.body);
-
-    setState(() {
-      pubs = data;
-    });
+    pubs.add(Pubs.fromJson(data));
+    pubpicture.add(PubPicture.fromJson(data));
   } else {
     print('Errore: ${response.statusCode}');
     print(response.body);
@@ -60,27 +61,7 @@ class AffordablePubsPage extends StatefulWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: pubs.length,
-              itemBuilder: (context, index) {
-                final pub = pubs[index];
-
-                return Card(
-                  child: ListTile(
-                    leading: Image.asset('asset/images/Pubs1.jpg',), //
-                    title: Text(pub['name']),
-                    subtitle: Text(pub['address']),
-                    trailing: Text('${pub['avgprice']} €'),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+      body: PubCard(pubs),
     );
   }
 }

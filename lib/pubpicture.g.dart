@@ -1,0 +1,20 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'pubpicture.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+PubPicture _$PubPictureFromJson(Map<String, dynamic> json) => PubPicture(
+  id: (json['id'] as num).toInt(),
+  name: json['name'] as String,
+  URL: json['URL'] as String,
+);
+
+Map<String, dynamic> _$PubPictureToJson(PubPicture instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'URL': instance.URL,
+    };
