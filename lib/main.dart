@@ -35,7 +35,11 @@ class MyHomePage extends StatefulWidget {
   class _MyHomePageState extends State<MyHomePage> {
     List<Pubs> pubs = [];
     List<PubPicture> pubpicture = [];
-  
+
+    void initstate(){
+      super.initState();
+      fetchAffordablePubs();
+    }
   Future<void> fetchAffordablePubs() async {
   final url = Uri.parse(
     'http://localhost:1337/api/pubs/affordable?maxPrice=25',
@@ -55,13 +59,18 @@ class MyHomePage extends StatefulWidget {
 
   @override
   Widget build(BuildContext context) {
-    fetchAffordablePubs();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: PubCard(pubs),
-    );
+      body: 
+      ListView.builder(
+              itemCount: pubs.length,
+              itemBuilder: (context, index) {
+                return PubCard(pubs[index]);
+              }
+            ),
+    ),
   }
 }

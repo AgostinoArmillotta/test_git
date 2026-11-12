@@ -4,30 +4,21 @@ import 'package:flutter/material.dart';
 
 class PubCard extends StatelessWidget {
 
-  PubCard(this.pubs);
-  final List<Pubs> pubs;
+  PubCard(this.pub);
+  final Pubs pub;
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                
-                return Card(
-                  child: ListTile(
-                    /*leading: Image.asset(pubs[index].picture.URL,), //
-                    title: Text(pubs[index].name),
-                    subtitle: Text(pubs[index].address),
-                    trailing: Text('${pubs[index].avgPrice} €'),*/
-                  ),
-                );
-              },
-            ),
+    return Card(
+          child: ListTile(
+            leading: CircleAvatar(
+              radius: 20.0,
+              backgroundColor: Colors.transparent,
+              backgroundImage:
+              NetworkImage('http://localhost:1337${pub.picture.URL}')),
+            title: Text(pub.name),
+            subtitle: Text(pub.address),
+            trailing: Text('${pub.avgPrice} €'),
           ),
-        ],
-      ),
-    );
-  }
+        );
+      }
 }
