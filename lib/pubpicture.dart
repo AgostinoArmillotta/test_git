@@ -6,9 +6,9 @@ class PubPicture{
   
   final int id;
   final String name;
-  final String URL;
+  final String url;
 
-  const PubPicture({required this.id, required this.name, required this.URL});
+  const PubPicture({required this.id, required this.name, required this.url});
 
   factory PubPicture.fromJson(Map<String, dynamic> json) => _$PubPictureFromJson(json);
 

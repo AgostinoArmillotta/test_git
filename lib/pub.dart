@@ -9,9 +9,9 @@ class Pubs
   final String name;
   final String address;
   final PubPicture picture; 
-  final String avgPrice;
+  final double avgprice;
 
-  Pubs({required this.id, required this.name, required this.address, required this.picture, required this.avgPrice});  
+  Pubs({required this.id, required this.name, required this.address, required this.picture, required this.avgprice});  
 
   factory Pubs.fromJson(Map<String, dynamic> json) => _$PubsFromJson(json);
 

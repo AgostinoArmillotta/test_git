@@ -11,7 +11,7 @@ Pubs _$PubsFromJson(Map<String, dynamic> json) => Pubs(
   name: json['name'] as String,
   address: json['address'] as String,
   picture: PubPicture.fromJson(json['picture'] as Map<String, dynamic>),
-  avgPrice: json['avgPrice'] as String,
+  avgprice: json['avgprice'] as double,
 );
 
 Map<String, dynamic> _$PubsToJson(Pubs instance) => <String, dynamic>{
@@ -19,5 +19,5 @@ Map<String, dynamic> _$PubsToJson(Pubs instance) => <String, dynamic>{
   'name': instance.name,
   'address': instance.address,
   'picture': instance.picture.toJson(),
-  'avgPrice': instance.avgPrice,
+  'avgPrice': instance.avgprice,
 };

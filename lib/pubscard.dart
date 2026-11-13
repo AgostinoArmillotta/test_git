@@ -14,11 +14,11 @@ class PubCard extends StatelessWidget {
               radius: 20.0,
               backgroundColor: Colors.transparent,
               backgroundImage:
-              NetworkImage('http://localhost:1337${pub.picture.URL}')),
+              NetworkImage('http://localhost:1337${pub.picture.url}')),
             title: Text(pub.name),
             subtitle: Text(pub.address),
-            trailing: Text('${pub.avgPrice} €'),
+            trailing: Text('${pub.avgprice} €'),
           ),
-        );
-      }
+    );
+  }
 }
