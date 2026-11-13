@@ -49,20 +49,15 @@ class MyHomePage extends StatefulWidget {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
-      int count = 0;
       for (var pubData in data) {
         pubs.add(Pubs.fromJson(pubData));
-        print(pubs[count].name);
-        print(pubs[count].picture.name);
-        print(pubs[count].picture.url);
-        count += 1;
       }
       print(pubs.length);
 
     } else {
 
-      print('moralitos : ' + 'Errore: ${response.statusCode}' + ' micacazzo');
-      print('uanm : ' + '${response.body}' + 'oouanmoo : ');
+      print('Errore: ${response.statusCode}');
+      print('${response.body}');
 
     }
     setState(() {});
