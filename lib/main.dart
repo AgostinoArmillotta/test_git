@@ -81,7 +81,13 @@ class EverisFridayPage extends StatefulWidget {
         if (projectSnap.connectionState == ConnectionState.none ||
             // ignore: unnecessary_null_comparison
             projectSnap.hasData == false) {
-          return Container(child:Text("ops there is no data or connection"));
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(),
+              Text("ops there is no data or connection")
+            ],
+          );
         }
         return ListView.builder(
           itemCount: pubs.length,
