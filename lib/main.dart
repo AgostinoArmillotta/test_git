@@ -19,29 +19,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.yellowAccent),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const EverisFridayPage (title: 'Flutter Demo Home Page'),
     );
   }
 }
-class MyHomePage extends StatefulWidget {
+class EverisFridayPage extends StatefulWidget {
   
-  const MyHomePage({super.key,required this.title});
+  const EverisFridayPage ({super.key,required this.title});
   final String title;
   @override
-  State<MyHomePage> createState() =>
-      _MyHomePageState();
+  State<EverisFridayPage> createState() =>
+      _EverisFridayState();
   }
 
-  class _MyHomePageState extends State<MyHomePage> {
-    List<Pubs> pubs = [];
-    List<PubPicture> pubpicture = [];
+  class _EverisFridayState extends State<EverisFridayPage> {
+    final List<Pubs> pubs = <Pubs>[];
+    late Future<bool> futurePubs;
+    
     @override
     void initState(){
       super.initState();
-      fetchAffordablePubs();
+      futurePubs = fetchAffordablePubs(pubs);
     }
 
-  Future<void> fetchAffordablePubs() async {
+  Future<bool> fetchAffordablePubs(pubs) async {
     final url = Uri.parse(
       'http://localhost:1337/api/pubs/affordable?maxPrice=25',
     );
@@ -53,14 +54,13 @@ class MyHomePage extends StatefulWidget {
         pubs.add(Pubs.fromJson(pubData));
       }
       print(pubs.length);
-
+      return true;
     } else {
 
       print('Errore: ${response.statusCode}');
       print('${response.body}');
-
+      return false;
     }
-    setState(() {});
 }
 
   @override
@@ -71,14 +71,26 @@ class MyHomePage extends StatefulWidget {
         title: Text(widget.title),
       ),
       body:Center(
-        child: 
-        ListView.builder(
+        child: _buildPubs(),
+      )
+    );
+  }
+  Widget _buildPubs() {
+    return FutureBuilder(
+      builder: (context, projectSnap) {
+        if (projectSnap.connectionState == ConnectionState.none ||
+            // ignore: unnecessary_null_comparison
+            projectSnap.hasData == false) {
+          return Container(child:Text("ops there is no data or connection"));
+        }
+        return ListView.builder(
           itemCount: pubs.length,
           itemBuilder: (context, index) {
             return PubCard(pubs[index]);
-          }
-        ),
-      )
+          },
+        );
+      },
+      future: futurePubs,
     );
   }
 }
