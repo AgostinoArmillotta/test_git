@@ -36,7 +36,7 @@ class _AffordablepageState extends State<Affordablepage> {
           Slider(
             value: AvgPrice,
             min: 0,
-            max: 500,
+            max: 250,
             onChanged: (nuovoValore) {
               setState(() {
                 AvgPrice = nuovoValore;
