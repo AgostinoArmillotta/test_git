@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class PubCard extends StatelessWidget {
 
   PubCard(this.pub);
+
+
   final Pubs pub;
 
   Widget build(BuildContext context) {
@@ -14,7 +16,8 @@ class PubCard extends StatelessWidget {
               radius: 20.0,
               backgroundColor: Colors.transparent,
               backgroundImage:
-              NetworkImage('http://localhost:1337${pub.picture.url}')),
+              NetworkImage('http://localhost:1337${pub.picture.url}')
+            ),
             title: Text(pub.name),
             subtitle: Text(pub.address),
             trailing: Text('${pub.avgprice} €'),
