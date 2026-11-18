@@ -48,7 +48,7 @@ class _AffordablepageState extends State<Affordablepage> {
             },
           ),
           Expanded(
-              child: _buildPubs(),
+            child: _buildPubs(),
           ),
         ],
       ),
