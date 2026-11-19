@@ -18,7 +18,7 @@ class _AffordablepageState extends State<Affordablepage> {
   List<dynamic> pubs = [];
   late Future<bool> futurePubs;
 
-  late double AvgPrice = 500;
+  late double AvgPrice = 200;
 
   @override
   void initState(){
@@ -36,7 +36,7 @@ class _AffordablepageState extends State<Affordablepage> {
           Slider(
             value: AvgPrice,
             min: 0,
-            max: 250,
+            max: 200,
             onChanged: (nuovoValore) {
               setState(() {
                 AvgPrice = nuovoValore;
