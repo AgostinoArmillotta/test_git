@@ -47,6 +47,7 @@ class _AffordablepageState extends State<Affordablepage> {
               });
             },
           ),
+          Text('${AvgPrice.toStringAsFixed(2)} €'),
           Expanded(
             child: _buildPubs(),
           ),
